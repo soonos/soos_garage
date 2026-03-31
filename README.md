@@ -12,7 +12,9 @@ How to install the garage:
         2. Drop the old owned_vehicles table
         3. Insert the soos_garage.sql into your database
         4. Reinsert the data from step 1 if necessary
+
     Script:
+    
         1. Drop the soos_garage folder into its desired location
         2. add "ensure soos_garage" to your server.cfg
         3. Edit the Config.lua to your preferences
