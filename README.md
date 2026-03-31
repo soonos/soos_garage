@@ -46,6 +46,5 @@ Config walkthrough:
     soos_impound_name:
 
 
-    Garages:
+    Garages: a
 
-    
