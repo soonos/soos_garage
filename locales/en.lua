@@ -29,7 +29,9 @@ Locales['en'] = {
     ['impound_blip'] = 'Impound Lot',
     ['delcar'] = 'The player [ Name : %s, Identifier : %s ] has deleted the vehicle with the plate %s.',
     ['vehicle_given'] = 'The player [ Name : %s, Identifier : %s ] has given the player [ Name : %s, Identifier : %s ] the vehicle : "%s" with the plate "%s" for the job "%s" and type "%s".',
-    ['insurance_price_info'] = string.format('The insurance costs&nbsp;<span style="color:green;">%s$</span>&nbsp;per vehicle', Config.ImpoundFee),
+    ['insurance_price_info1'] = 'The insurance costs',
+    ['insurance_price_info2'] = '$',
+    ['insurance_price_info3'] = 'per vehicle',
     ['not_enough_money'] = 'You do not have enough money!',
     ['vehicle_impounded'] = 'Your vehicle is at the impound!',
 }

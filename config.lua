@@ -15,8 +15,8 @@ Config = {
     impoundblip = 68,
     ImpoundCss = 'versicherung',
     InsuranceCss = 'versicherung',
-    webhook_url = "https://discord.com/api/webhooks/1470056246496203014/nDU34d6RdPDgVJvafuTLG5b89KfkXtC5CLejp3ISCaQhqZfB0Ez7eNEKEWTpfl01fx8Q",
-    webhook_image = "https://avatars.githubusercontent.com/u/107424867?v=4",
+    webhook_url = "",
+    webhook_image = "",
     soos_impound_name = "soos_impound",
 }
 

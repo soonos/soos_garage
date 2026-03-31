@@ -3,12 +3,14 @@ RegisterNetEvent("soos_garage:perms")
 AddEventHandler("soos_garage:perms", function()
     print("" .. _U('rights'))
     RegisterCommand("setplate", function (source, args, rawCommand)
+        local plate = args[1]:gsub("_", "%s")
+        local plate = plate:gsub('"', "")
         ped = GetPlayerPed(-1)
         veh = GetVehiclePedIsIn(ped, false)
-        SetVehicleNumberPlateText(veh, args[1])
+        SetVehicleNumberPlateText(veh, plate)
     end)
     exports.chat:addSuggestion('/setplate', 'Set the license plate of the current vehicle', {
-        { name="Licenseplate", help="New license plate" }
+        { name="Licenseplate", help="New license plate (type the full plate within quotes and use underscores for spaces)" }
     })
 
     RegisterCommand("givecar", function(source, args, rawCommand)
@@ -25,7 +27,9 @@ AddEventHandler("soos_garage:perms", function()
             SetModelAsNoLongerNeeded(ModelHash)
             TaskWarpPedIntoVehicle(MyPed, Vehicle, -1)
             if args[3] then
-                SetVehicleNumberPlateText(Vehicle, args[3])
+                local plate = args[3]:gsub("_", "%s")
+                local plate = plate:gsub('"', "")
+                SetVehicleNumberPlateText(Vehicle, plate)
             end
             local vehicleProps = ESX.Game.GetVehicleProperties(Vehicle)
             local id = PlayerId()
@@ -35,19 +39,15 @@ AddEventHandler("soos_garage:perms", function()
     exports.chat:addSuggestion('/givecar', 'Gives a vehicle to a player', {
         { name="ID", help="Player ID" },
         { name="Model", help="Vehicle model" },
-        { name="Licenseplate", help="License plate (optional)" },
+        { name="Licenseplate", help="License plate (optional, type the full plate within quotes and use underscores for spaces)" },
         { name="Jobname", help="Name of the job (optional)" },
         { name="Type", help="Type of the vehicle (optional)" }
     })
 
-    RegisterNetEvent('soos_garage:delcar')
-    AddEventHandler('soos_garage:delcar', function()
-        local ped = GetPlayerPed(-1)
-        local veh = GetVehiclePedIsIn(ped, false)
-        ESX.Game.DeleteVehicle(veh)
-    end)
 
     RegisterCommand("getcar", function(source, args, rawCommand)
+        local plate = args[1]:gsub("_", "%s")
+        local plate = plate:gsub('"', "")
         ESX.TriggerServerCallback('soos_garage:getcar', function(r)
             local number = 1
             if r[number] == nil then
@@ -58,26 +58,30 @@ AddEventHandler("soos_garage:perms", function()
                 ESX.Game.SetVehicleProperties(vehicle, json.decode(r[number]["vehicle"]))
                 TaskWarpPedIntoVehicle(PlayerPedId(), vehicle, -1)
             end
-        end, args[1])
+        end, plate)
     end, false)
     exports.chat:addSuggestion('/getcar', 'Spawns given vehicle from the database', {
-        { name="Licenseplate", help="License plate of the vehicle" }
+        { name="Licenseplate", help="License plate of the vehicle (type the full plate within quotes and use underscores for spaces)" }
     })
 
     RegisterCommand("updatestored", function(source, args, rawCommand)
-        ESX.TriggerServerCallback('soos_garage:updatestored', nil, args[1], args[2])
+        local plate = args[1]:gsub("_", "%s")
+        local plate = plate:gsub('"', "")
+        ESX.TriggerServerCallback('soos_garage:updatestored', nil, plate, args[2])
     end)
     exports.chat:addSuggestion('/updatestored', 'Stores a vehicle in the garage', {
-        { name="Licenseplate", help="License plate of the vehicle" },
+        { name='Licenseplate', help='License plate of the vehicle (type the full plate within quotes and use underscores for spaces)' },
         { name="State", help="1 = Vehicle in garage, 0 = Vehicle not in garage" }
     })
 
     RegisterCommand("deletecar", function(source, args, rawCommand)
+        local plate = args[1]:gsub("_", "%s")
+        local plate = plate:gsub('"', "")
         ESX.TriggerServerCallback('soos_garage:deletecar2', function(r)
-        end, args[1], args[2])
+        end, plate)
     end)
     exports.chat:addSuggestion('/deletecar', 'Deletes a vehicle from the garage', {
-        { name="Licenseplate", help="License plate of the vehicle" },
+        { name="Licenseplate", help="License plate of the vehicle (type the full plate within quotes and use underscores for spaces)" }
     })
 
     RegisterCommand("setallstored", function(source, args, rawCommand)
@@ -102,13 +106,13 @@ AddEventHandler("soos_garage:perms", function()
         { name="Number", help="The amount of engine health to set" }
     })
 
-    RegisterCommand('d', function (source, args, rawCommand)
-        car = GetVehiclePedIsIn(GetPlayerPed(-1), false)
-        SetEntityAsMissionEntity(car, true, true)
-        DeleteVehicle(car)
-        FreezeEntityPosition(GetPlayerPed(-1), false)
-        SetEntityVisible(GetPlayerPed(-1), true)
-    end)
+end)
+
+RegisterNetEvent('soos_garage:delcar')
+AddEventHandler('soos_garage:delcar', function()
+    local ped = GetPlayerPed(-1)
+    local veh = GetVehiclePedIsIn(ped, false)
+    ESX.Game.DeleteVehicle(veh)
 end)
 
 RegisterNetEvent('esx:setJob')

@@ -104,11 +104,8 @@ ESX.RegisterServerCallback('soos_garage:getcars2', function(source, cb, job)
     end
 end)
 
-ESX.RegisterServerCallback('soos_garage:deletecar2', function(source, cb, plate, plate2)
+ESX.RegisterServerCallback('soos_garage:deletecar2', function(source, cb, plate)
     local xPlayer = ESX.GetPlayerFromId(source)
-    if plate2 ~= nil then
-        plate = plate .. " " .. plate2
-    end
     MySQL.Async.execute('DELETE FROM owned_vehicles WHERE plate = @plate', {
         ['@plate'] = plate
     }, function(result)

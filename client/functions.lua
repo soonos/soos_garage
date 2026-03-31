@@ -134,8 +134,9 @@ function OpenMenuGarage(zone)
     end
 
     if zone == 'insurance' then
+        local text = _U('insurance_price_info1') .. ' <span style="color:green;">' .. Config.ImpoundFee .. '&nbsp;' .. _U('insurance_price_info2') .. '</span> ' ..  _U('insurance_price_info3')
         local elements = {
-            {label = _U('insurance_price_info'), value = 'text'}
+            {label = text, value = 'text'}
         }
         ESX.UI.Menu.CloseAll()
         ESX.TriggerServerCallback('soos_garage:getcars2', function(r)

@@ -29,7 +29,9 @@ Locales['de'] = {
     ['impound_blip'] = 'Abschlepphof',
     ['delcar'] = 'Der Spieler [ Name : %s, Identifier : %s ] hat das Fahrzeug mit dem Kennzeichen %s gelöscht.',
     ['vehicle_given'] = 'Der Spieler [ Name : %s, Identifier : %s ] hat dem Spieler [ Name : %s, Identifier : %s ] das Fahrzeug : "%s" mit dem Kennzeichen "%s" für den Job "%s" und Typ "%s" gegeben.',
-    ['insurance_price_info'] = string.format('Die Versicherung kostet&nbsp;<span style="color:green;">%s$</span>&nbsp;pro Fahrzeug', Config.ImpoundFee),
+    ['insurance_price_info1'] = 'Die Versicherung kostet',
+    ['insurance_price_info2'] = '$',
+    ['insurance_price_info3'] = 'pro Fahrzeug',
     ['not_enough_money'] = 'Du hast nicht genug Geld!',
     ['vehicle_impounded'] = 'Dein Fahrzeug ist beim Abschlepphof!',
 }
