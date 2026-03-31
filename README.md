@@ -2,6 +2,8 @@
 Simple Fivem Garrage script for the ESX Framework with job and type sorting mechanism
 
 
+
+
 How to install the garage:
 
     Database:
@@ -73,7 +75,7 @@ Config walkthrough:
     webhook_url:
 
     webhook_image:
-    
+
     soos_impound_name:
 
 
