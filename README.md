@@ -3,7 +3,9 @@ Simple Fivem Garrage script for the ESX Framework with job and type sorting mech
 
 
 How to install the garage:
+
     Database:
+    
         1. If you allready have data in your owned_vehicles table and you   dont want to loose it    BACKUP IT!
         2. Drop the old owned_vehicles table
         3. Insert the soos_garage.sql into your database
