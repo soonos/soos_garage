@@ -107,8 +107,8 @@ https://docs.fivem.net/docs/game-references/markers/
 
 ```lua
 useinsurance = true
-Costpercar = 20
-Costintervall = 15 -- time in minutes
+Costpercar = 20 -- Ammount per car
+Costintervall = 15 -- Time in minutes
 ```
 
 - Charge players periodically per insured vehicle  
@@ -132,7 +132,7 @@ repaircost = 5
 ImpoundFee = 50
 ```
 
-- Retrieve lost/uninsured vehicles at a cost  
+- Retrieve lost and insured vehicles at a cost  
 - Includes custom menu styling (`ImpoundCss`)  
 
 ---
