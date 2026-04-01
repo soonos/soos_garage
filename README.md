@@ -1,44 +1,75 @@
-# 🚧 soos_garage (WIP)
+# soos_garage
 
-A simple FiveM garage script for the ESX framework, featuring job-based and vehicle-type sorting.
+A lightweight and configurable garage system for FiveM using the ESX framework.  
+Supports job-based access control, vehicle-type filtering, and optional insurance mechanics.
+
+> ⚠️ This resource is currently **Work in Progress (WIP)**. Expect updates and possible breaking changes.
+
+---
+
+## ✨ Features
+
+- Job-restricted garages
+- Vehicle type filtering (cars, boats, etc.)
+- Integrated insurance system (optional)
+- Impound system with retrieval fees
+- Damage-based repair cost on vehicle storage
+- Admin commands (ACE-permission based)
+- Customizable UI (CSS per menu)
+- Discord logging via webhook
+- Multi-language support (EN/DE + custom)
+
+---
+
+## 📋 Requirements
+
+- ESX Framework
+- MySQL database (compatible with `owned_vehicles` table structure)
 
 ---
 
 ## 📦 Installation
 
-### 🗄️ Database Setup
+### 1. Database Setup
 
-> ⚠️ **Important:** If you already have data in your `owned_vehicles` table and don’t want to lose it, make a backup first.
+> ⚠️ **Backup required if you already use `owned_vehicles`**
 
-1. Backup your existing `owned_vehicles` table
-2. Drop the old `owned_vehicles` table
-3. Import `soos_garage.sql` into your database
-4. Restore your data (if necessary)
-
----
-
-### 📁 Script Installation
-
-1. Place the `soos_garage` folder into your resources directory
-2. Add the following line to your `server.cfg`: ensure soos_garage
-3. Configure the script by editing `Config.lua`
+1. Backup your current `owned_vehicles` table
+2. Drop the existing table
+3. Import `soos_garage.sql`
+4. Restore your data if needed
 
 ---
 
-## ⚙️ Configuration Guide
+### 2. Resource Setup
 
-### 🌍 General Settings
+1. Place `soos_garage` into your `resources` folder  
+2. Add to your `server.cfg`:
 
-- **Locale**  
-Choose the language for UI elements.  
-Available: `de` (German), `en` (English)  
-Custom translations can be added via `locales/custom.lua`.  
-Set `Locale = 'custom'` in the config to use it.
+ensure soos_garage
+
+3. Configure the script in `Config.lua`
 
 ---
 
-- **UseAdminCommands**  
-Enables admin commands for users with the `garage.admin` ACE permission.
+## ⚙️ Configuration
+
+All configuration is handled via `Config.lua`.
+
+### 🌍 Localization
+
+```lua
+Locale = 'en' -- 'de' or 'custom'
+en → English (default)
+de → German
+custom → Define your own in locales/custom.lua
+🔐 Admin Commands
+
+Enable with:
+
+UseAdminCommands = true
+
+Requires ACE permission: garage.admin
 
 Available commands:
 
@@ -49,126 +80,76 @@ Available commands:
 /deletecar
 /setallstored
 /setehealth
+🗺️ Blips & Markers
+GarageBlip → Garage map icon
+insuranceblip → Insurance location
+impoundblip → Impound location
 
+Documentation:
+https://docs.fivem.net/docs/game-references/blips/
 
----
+https://docs.fivem.net/docs/game-references/markers/
 
-- **GarageBlip**  
-Map blip configuration for garages.  
-👉 https://docs.fivem.net/docs/game-references/blips/
+🚗 Insurance System
+useinsurance = true
+Costpercar = 100
+Costintervall = 60
+Charge players periodically per insured vehicle
+Managed via the insurance location
+🔧 Repair Costs
+repaircost = 50
+Cost per 1% vehicle damage when storing
+🚓 Impound System
+ImpoundFee = 500
+Retrieve lost/uninsured vehicles at a cost
+Includes custom menu styling (ImpoundCss)
+🎨 UI Customization
+InsuranceCss
+ImpoundCss
+Garage-specific css
+📡 Logging
+webhook_url = "YOUR_WEBHOOK"
+webhook_image = "IMAGE_URL"
+Sends logs to Discord
+🔗 Dependency
+soos_impound_name = "soos_impound"
 
-- **DrawDistance**  
-Maximum distance at which markers are visible.
+GitHub link coming soon
 
----
+🅿️ Garage Configuration
 
-### 🚗 Insurance System
+Example structure:
 
-- **useinsurance**  
-Enable or disable vehicle insurance.
+Garages = {
+    {
+        name = "Central Garage",
+        css = "default",
+        location = vector3(x, y, z),
+        spawnpoint = vector4(x, y, z, w),
+        delete = vector3(x, y, z),
+        job = "civ",
+        marker = 1,
+        type = "car"
+    }
+}
+Parameters
+Key	Description
+name	Display name in menu
+css	UI styling preset
+location	Interaction point
+spawnpoint	Vehicle spawn location
+delete	Vehicle storage point
+job	Job restriction ("civ" = public)
+marker	Marker type
+type	Vehicle category
+🧠 Notes
+Designed for flexibility and server-specific customization
+Database structure differs from standard ESX → migration required
+Ensure compatibility with your existing garage/vehicle systems
+⚠️ Known Limitations
+WIP status → features may change
+Limited documentation for advanced customization (for now)
+🤝 Contributing
 
-- **Costpercar**  
-Cost per vehicle (only used if insurance is enabled).
-
-- **Costintervall**  
-Time interval (in minutes) between insurance charges.
-
-- **Insurance**  
-Location where players can manage their insurance.
-
-- **insuranceblip**  
-Map blip for the insurance location.  
-👉 https://docs.fivem.net/docs/game-references/blips/
-
----
-
-### 🔧 Repair System
-
-- **repaircost**  
-Cost per 1% of vehicle damage when storing a damaged vehicle.
-
----
-
-### 🚓 Impound System
-
-- **ImpoundPos**  
-Location where players can retrieve their vehicles.
-
-- **ImpoundSpawn**  
-Spawn location for retrieved vehicles.
-
-- **ImpoundFee**  
-Fee required to retrieve a vehicle.
-
-- **impoundblip**  
-Map blip for the impound location.  
-👉 https://docs.fivem.net/docs/game-references/blips/
-
-- **ImpoundCss**  
-CSS styling for the impound menu.
-
----
-
-### 🎨 UI Customization
-
-- **InsuranceCss**  
-CSS styling for the insurance menu.
-
----
-
-### 📡 Logging
-
-- **webhook_url**  
-Discord webhook URL for logging.
-
-- **webhook_image**  
-Image/avatar used for the Discord bot.
-
----
-
-### 🔗 Dependencies
-
-- **soos_impound_name**  
-Name of the `soos_impound` resource  
-*(GitHub link coming soon)*
-
----
-
-## 🅿️ Garage Configuration
-
-Each garage entry supports the following options:
-
-- **name**  
-Display name of the garage (shown in the menu)
-
-- **css**  
-Custom CSS styling for the garage menu
-
-- **location**  
-Position of the garage interaction point
-
-- **spawnpoint**  
-Vehicle spawn location
-
-- **delete**  
-Parking/vehicle storage point
-
-- **job**  
-Job restriction (use `"civ"` for public access)
-
-- **marker**  
-Marker type used for the garage  
-👉 https://docs.fivem.net/docs/game-references/markers/
-
-- **type**  
-Vehicle type supported by this garage
-
----
-
-## 📝 Notes
-
-- This project is still a **Work in Progress**
-- Expect changes and possible breaking updates
-- Contributions and feedback are welcome!
-
----
+Contributions, bug reports, and feature requests are welcome.
+Feel free to open an issue or submit a pull request.
