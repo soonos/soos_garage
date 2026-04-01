@@ -226,7 +226,3 @@ Contributions, bug reports, and feature requests are welcome.
 Feel free to open an issue or submit a pull request.
 
 ---
-
-## 📄 License
-
-No license specified yet.
