@@ -20,8 +20,7 @@ A simple FiveM garage script for the ESX framework, featuring job-based and vehi
 ### 📁 Script Installation
 
 1. Place the `soos_garage` folder into your resources directory
-2. Add the following line to your `server.cfg`:
-ensure soos_garage
+2. Add the following line to your `server.cfg`: ensure soos_garage
 3. Configure the script by editing `Config.lua`
 
 ---
@@ -42,6 +41,7 @@ Set `Locale = 'custom'` in the config to use it.
 Enables admin commands for users with the `garage.admin` ACE permission.
 
 Available commands:
+
 /setplate
 /givecar
 /getcar
