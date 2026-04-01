@@ -176,10 +176,12 @@ Garages = {
         name = "Central Garage",
         css = "default",
         location = vector3(x, y, z),
-        spawnpoint = vector3(x, y, z),
+        spawnpoint = vector4(x, y, z, w),
         delete = vector3(x, y, z),
         job = "civ",
         marker = 1,
+        ImpoundPos = vector3(x, y, z),
+        ImpoundSpawn = vector4(x, y, z, w),
         type = "car"
     }
 }
@@ -187,16 +189,18 @@ Garages = {
 
 ### Parameters
 
-| Key          | Description |
-|--------------|------------|
-| `name`       | Display name in menu |
-| `css`        | UI styling preset |
-| `location`   | Interaction point |
-| `spawnpoint` | Vehicle spawn location |
-| `delete`     | Vehicle storage point |
-| `job`        | Job restriction (`"civ"` = public) |
-| `marker`     | Marker type |
-| `type`       | Vehicle category |
+| Key           | Description |
+|---------------|------------|
+| `name`        | Display name in menu |
+| `css`         | UI styling preset |
+| `location`    | Interaction point |
+| `spawnpoint`  | Vehicle spawn location |
+| `delete`      | Vehicle storage point |
+| `job`         | Job restriction (`"civ"` = every job) |
+| `marker`      | Marker type |
+| `type`        | Vehicle category |
+| `ImpoundPos`  | Impound Position for job and type |
+| `ImpoundSpawn`| Vehicle Spawn of the Impound |
 
 ---
 
