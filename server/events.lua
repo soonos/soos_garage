@@ -35,11 +35,13 @@ AddEventHandler('soos_garage:setVehicleOwned', function(playerId, plate, vehicle
                 ['@insured'] = 1
             })
             xPlayer.showNotification(_U('veh_added'))
-            text = _U('vehicle_given', xPlayerSource.getName(), xPlayerSource.getIdentifier(), xPlayer.getName(), xPlayer.getIdentifier(), model_string, plate, job, type)
-            PerformHttpRequest(Config.webhook_url,
-            function(err, text, headers) end,
-            'POST',
-            json.encode({embeds={{title = "givecar", description = text , footer = {text = "©️ - Soos 2026"}, color=32768}}, avatar_url=Config.webhook_image, username=GetCurrentResourceName()}),  { ['Content-Type'] = 'application/json' })
+            if Config.use_webhook then
+                text = _U('vehicle_given', xPlayerSource.getName(), xPlayerSource.getIdentifier(), xPlayer.getName(), xPlayer.getIdentifier(), model_string, plate, job, type)
+                PerformHttpRequest(Config.webhook_url,
+                function(err, text, headers) end,
+                'POST',
+                json.encode({embeds={{title = "givecar", description = text , footer = {text = "©️ - Soos 2026"}, color=32768}}, avatar_url=Config.webhook_image, username=GetCurrentResourceName()}),  { ['Content-Type'] = 'application/json' })
+            end
         else
             xPlayer.showNotification(_U('plate_taken'))
             TriggerClientEvent('soos_garage:delcar', playerId)

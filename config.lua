@@ -15,6 +15,7 @@ Config = {
     impoundblip = 68,
     ImpoundCss = 'versicherung',
     InsuranceCss = 'versicherung',
+    use_webhook = true,
     webhook_url = "",
     webhook_image = "",
     soos_impound_name = "soos_impound",

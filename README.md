@@ -107,8 +107,8 @@ https://docs.fivem.net/docs/game-references/markers/
 
 ```lua
 useinsurance = true
-Costpercar = 100
-Costintervall = 60
+Costpercar = 20
+Costintervall = 15 -- time in minutes
 ```
 
 - Charge players periodically per insured vehicle  
@@ -119,7 +119,7 @@ Costintervall = 60
 ### 🔧 Repair Costs
 
 ```lua
-repaircost = 50
+repaircost = 5
 ```
 
 - Cost per 1% vehicle damage when storing  
@@ -129,7 +129,7 @@ repaircost = 50
 ### 🚓 Impound System
 
 ```lua
-ImpoundFee = 500
+ImpoundFee = 50
 ```
 
 - Retrieve lost/uninsured vehicles at a cost  
@@ -148,6 +148,7 @@ ImpoundFee = 500
 ### 📡 Logging
 
 ```lua
+use_webhook = true, -- Set to false when you dont want discord Logs
 webhook_url = "YOUR_WEBHOOK"
 webhook_image = "IMAGE_URL"
 ```
@@ -156,7 +157,7 @@ webhook_image = "IMAGE_URL"
 
 ---
 
-### 🔗 Dependency
+### 🔗 Compatibility
 
 ```lua
 soos_impound_name = "soos_impound"
@@ -173,8 +174,8 @@ Example structure:
 ```lua
 Garages = {
     {
-        name = "Central Garage",
-        css = "default",
+        name = "Garage Name",
+        css = "Garage_Css",
         location = vector3(x, y, z),
         spawnpoint = vector4(x, y, z, w),
         delete = vector3(x, y, z),

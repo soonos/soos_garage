@@ -109,11 +109,13 @@ ESX.RegisterServerCallback('soos_garage:deletecar2', function(source, cb, plate)
     MySQL.Async.execute('DELETE FROM owned_vehicles WHERE plate = @plate', {
         ['@plate'] = plate
     }, function(result)
-        text = _U('delcar', xPlayer.getName(), xPlayer.getIdentifier(), plate)
-        PerformHttpRequest(Config.webhook_url,
-        function(err, text, headers) end,
-        'POST',
-        json.encode({embeds={{title = "deletecar", description = text , footer = {text = "©️ - Soos 2026"}, color=32768}}, avatar_url=Config.webhook_image, username=GetCurrentResourceName()}),  { ['Content-Type'] = 'application/json' })
+        if Config.use_webhook then
+            text = _U('delcar', xPlayer.getName(), xPlayer.getIdentifier(), plate)
+            PerformHttpRequest(Config.webhook_url,
+            function(err, text, headers) end,
+            'POST',
+            json.encode({embeds={{title = "deletecar", description = text , footer = {text = "©️ - Soos 2026"}, color=32768}}, avatar_url=Config.webhook_image, username=GetCurrentResourceName()}),  { ['Content-Type'] = 'application/json' })
+        end
         cb(result)
     end)
 end)
