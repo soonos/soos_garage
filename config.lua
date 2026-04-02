@@ -16,8 +16,8 @@ Config = {
     ImpoundCss = 'versicherung',
     InsuranceCss = 'versicherung',
     use_webhook = true,
-    webhook_url = "",
-    webhook_image = "",
+    webhook_url = "test",
+    webhook_image = "test",
     soos_impound_name = "soos_impound",
 }
 
@@ -185,5 +185,3 @@ Config.Garages = {
         type = "car"
     }
 }
-
-

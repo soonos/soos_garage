@@ -15,6 +15,13 @@ ESX.RegisterServerCallback('soos_garage:storecarcheck', function(source, cb, veh
     end)
 end)
 
+if Config.webhook_url == "test" then
+    Config.webhook_url = GetConvar('webhook_url_garage')
+end
+if Config.webhook_image == "test" then
+    Config.webhook_image = GetConvar('webhook_image')
+end
+
 ESX.RegisterServerCallback('soos_garage:storecar', function(source, cb, vehicleProps, pay)
     vehicleProps.engineHealth = 1000.0
     local xPlayer = ESX.GetPlayerFromId(source)

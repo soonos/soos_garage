@@ -1,8 +1,12 @@
 RegisterNetEvent('soos_garage:checkAce')
 RegisterNetEvent('soos_garage:setVehicleOwned')
 
-
-
+if Config.webhook_url == "test" then
+    Config.webhook_url = GetConvar('webhook_url_garage')
+end
+if Config.webhook_image == "test" then
+    Config.webhook_image = GetConvar('webhook_image')
+end
 
 AddEventHandler('soos_garage:checkAce', function()
     local playerId = source
