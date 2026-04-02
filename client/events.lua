@@ -4,13 +4,12 @@ AddEventHandler("soos_garage:perms", function()
     print("" .. _U('rights'))
     RegisterCommand("setplate", function (source, args, rawCommand)
         local plate = args[1]:gsub("_", "%s")
-        local plate = plate:gsub('"', "")
         ped = GetPlayerPed(-1)
         veh = GetVehiclePedIsIn(ped, false)
         SetVehicleNumberPlateText(veh, plate)
     end)
     exports.chat:addSuggestion('/setplate', 'Set the license plate of the current vehicle', {
-        { name="Licenseplate", help="New license plate (type the full plate within quotes and use underscores for spaces)" }
+        { name="Licenseplate", help="New license plate (use underscores for spaces)" }
     })
 
     RegisterCommand("givecar", function(source, args, rawCommand)
@@ -28,7 +27,6 @@ AddEventHandler("soos_garage:perms", function()
             TaskWarpPedIntoVehicle(MyPed, Vehicle, -1)
             if args[3] then
                 local plate = args[3]:gsub("_", "%s")
-                local plate = plate:gsub('"', "")
                 SetVehicleNumberPlateText(Vehicle, plate)
             end
             local vehicleProps = ESX.Game.GetVehicleProperties(Vehicle)
@@ -39,7 +37,7 @@ AddEventHandler("soos_garage:perms", function()
     exports.chat:addSuggestion('/givecar', 'Gives a vehicle to a player', {
         { name="ID", help="Player ID" },
         { name="Model", help="Vehicle model" },
-        { name="Licenseplate", help="License plate (optional, type the full plate within quotes and use underscores for spaces)" },
+        { name="Licenseplate", help="License plate (optional, use underscores for spaces)" },
         { name="Jobname", help="Name of the job (optional)" },
         { name="Type", help="Type of the vehicle (optional)" }
     })
@@ -47,7 +45,6 @@ AddEventHandler("soos_garage:perms", function()
 
     RegisterCommand("getcar", function(source, args, rawCommand)
         local plate = args[1]:gsub("_", "%s")
-        local plate = plate:gsub('"', "")
         ESX.TriggerServerCallback('soos_garage:getcar', function(r)
             local number = 1
             if r[number] == nil then
@@ -61,27 +58,25 @@ AddEventHandler("soos_garage:perms", function()
         end, plate)
     end, false)
     exports.chat:addSuggestion('/getcar', 'Spawns given vehicle from the database', {
-        { name="Licenseplate", help="License plate of the vehicle (type the full plate within quotes and use underscores for spaces)" }
+        { name="Licenseplate", help="License plate of the vehicle (use underscores for spaces)" }
     })
 
     RegisterCommand("updatestored", function(source, args, rawCommand)
         local plate = args[1]:gsub("_", "%s")
-        local plate = plate:gsub('"', "")
         ESX.TriggerServerCallback('soos_garage:updatestored', nil, plate, args[2])
     end)
     exports.chat:addSuggestion('/updatestored', 'Stores a vehicle in the garage', {
-        { name='Licenseplate', help='License plate of the vehicle (type the full plate within quotes and use underscores for spaces)' },
+        { name='Licenseplate', help='License plate of the vehicle (use underscores for spaces)' },
         { name="State", help="1 = Vehicle in garage, 0 = Vehicle not in garage" }
     })
 
     RegisterCommand("deletecar", function(source, args, rawCommand)
         local plate = args[1]:gsub("_", "%s")
-        local plate = plate:gsub('"', "")
         ESX.TriggerServerCallback('soos_garage:deletecar2', function(r)
         end, plate)
     end)
     exports.chat:addSuggestion('/deletecar', 'Deletes a vehicle from the garage', {
-        { name="Licenseplate", help="License plate of the vehicle (type the full plate within quotes and use underscores for spaces)" }
+        { name="Licenseplate", help="License plate of the vehicle (use underscores for spaces)" }
     })
 
     RegisterCommand("setallstored", function(source, args, rawCommand)
