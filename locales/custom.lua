@@ -34,4 +34,6 @@ Locales['custom'] = {
     ['insurance_price_info3'] = '',
     ['not_enough_money'] = '',
     ['vehicle_impounded'] = '',
+    ['vehicle_deleted_title'] = '',
+    ['vehicle_given_title'] = '',
 }

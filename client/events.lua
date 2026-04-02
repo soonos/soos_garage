@@ -3,7 +3,7 @@ RegisterNetEvent("soos_garage:perms")
 AddEventHandler("soos_garage:perms", function()
     print("" .. _U('rights'))
     RegisterCommand("setplate", function (source, args, rawCommand)
-        local plate = args[1]:gsub("_", "%s")
+        local plate = args[1]:gsub("_", " ")
         ped = GetPlayerPed(-1)
         veh = GetVehiclePedIsIn(ped, false)
         SetVehicleNumberPlateText(veh, plate)
@@ -26,7 +26,7 @@ AddEventHandler("soos_garage:perms", function()
             SetModelAsNoLongerNeeded(ModelHash)
             TaskWarpPedIntoVehicle(MyPed, Vehicle, -1)
             if args[3] then
-                local plate = args[3]:gsub("_", "%s")
+                local plate = args[3]:gsub("_", " ")
                 SetVehicleNumberPlateText(Vehicle, plate)
             end
             local vehicleProps = ESX.Game.GetVehicleProperties(Vehicle)
@@ -44,7 +44,7 @@ AddEventHandler("soos_garage:perms", function()
 
 
     RegisterCommand("getcar", function(source, args, rawCommand)
-        local plate = args[1]:gsub("_", "%s")
+        local plate = args[1]:gsub("_", " ")
         ESX.TriggerServerCallback('soos_garage:getcar', function(r)
             local number = 1
             if r[number] == nil then
@@ -62,7 +62,7 @@ AddEventHandler("soos_garage:perms", function()
     })
 
     RegisterCommand("updatestored", function(source, args, rawCommand)
-        local plate = args[1]:gsub("_", "%s")
+        local plate = args[1]:gsub("_", " ")
         ESX.TriggerServerCallback('soos_garage:updatestored', nil, plate, args[2])
     end)
     exports.chat:addSuggestion('/updatestored', 'Stores a vehicle in the garage', {
@@ -71,7 +71,7 @@ AddEventHandler("soos_garage:perms", function()
     })
 
     RegisterCommand("deletecar", function(source, args, rawCommand)
-        local plate = args[1]:gsub("_", "%s")
+        local plate = args[1]:gsub("_", " ")
         ESX.TriggerServerCallback('soos_garage:deletecar2', function(r)
         end, plate)
     end)

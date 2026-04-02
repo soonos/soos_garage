@@ -34,4 +34,6 @@ Locales['de'] = {
     ['insurance_price_info3'] = 'pro Fahrzeug',
     ['not_enough_money'] = 'Du hast nicht genug Geld!',
     ['vehicle_impounded'] = 'Dein Fahrzeug ist beim Abschlepphof!',
+    ['vehicle_deleted_title'] = 'Fahrzeug gelöscht',
+    ['vehicle_given_title'] = 'Fahrzeug gegeben',
 }
